@@ -39,7 +39,9 @@
  */
 function decodeCameraImage(data)
 {
-    // ADD YOUR CODE HERE
+    function redOrBlue {
+        console.log(data);
+    }
 
     return false;
 }
