@@ -28,7 +28,7 @@
 
 
 function redOrBlue(data) {
-			outputAreaRef.innerHTML += data;
+	outputAreaRef.innerHTML += String(data);
     }
 
 var dataTest = 0;
