@@ -43,5 +43,3 @@ function decodeCameraImage(data)
         }
     }
 }
-    }
-}
