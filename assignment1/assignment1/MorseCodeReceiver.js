@@ -27,19 +27,19 @@
 // ADD YOUR ADDITIONAL FUNCTIONS AND GLOBAL VARIABLES HERE
 
 
-function redOrBlue(data) {
-	outputAreaRef.innerHTML += String(data);
-    }
-
-var dataTest = 0;
-var outputAreaRef = document.getElementById("messageField");
+/*
+ * This function is called once per unit of time with camera image data.
+ * 
+ * Input : Image Data. An array of integers representing a sequence of pixels.
+ *         Each pixel is representing by four consecutive integer values for 
+ *         the 'red', 'green', 'blue' and 'alpha' values.  See the assignment
+ *         instructions for more details.
+ * Output: You should return a boolean denoting whether or not the image is 
+ *         an 'on' (red) signal.
+ */
 function decodeCameraImage(data)
 {
-    redOrBlue(data);
-    dataTest++;
-    if (dataTest ==2) {
-        while (dataTest != undefined) {
-           dataTest = 2; 
-        }
-    }
+    // ADD YOUR CODE HERE
+
+    return false;
 }
