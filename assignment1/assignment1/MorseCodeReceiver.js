@@ -27,7 +27,14 @@
 // ADD YOUR ADDITIONAL FUNCTIONS AND GLOBAL VARIABLES HERE
 
 function redOrBlue(data){
-    document.getElementById("messageField").innerHTML = typeof data;
+	function objectToHtml(data) {
+		var readableString = '';
+			for (var property in data) {
+				readableString += "<p>Object property '" + property + "' has property value '" + data[property] + "'.</p>";
+			}
+		return readableString;
+	}
+    document.getElementById("messageField").innerHTML = objectToHtml(data);
     messageFinished();
 }
 
