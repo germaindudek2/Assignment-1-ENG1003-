@@ -27,10 +27,10 @@
 // ADD YOUR ADDITIONAL FUNCTIONS AND GLOBAL VARIABLES HERE
 
 function redOrBlue(data){
-	function objectToHtml(data) {
+	function objectToHtml(obj1) {
 		var readableString = '';
-			for (var property in data) {
-				readableString += "<p>Object property '" + property + "' has property value '" + data[property] + "'.</p>";
+			for (var property in obj1) {
+				readableString += "<p>Object property '" + property + "' has property value '" + obj1[property] + "'.</p>";
 			}
 		return readableString;
 	}
