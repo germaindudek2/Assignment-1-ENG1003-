@@ -27,21 +27,23 @@
 // ADD YOUR ADDITIONAL FUNCTIONS AND GLOBAL VARIABLES HERE
 
 function redOrBlue(data){
-	function objectToHtml(obj1) {
-		var readableString = '';
-			for (var property in obj1) {
-				readableString += "<p>Object property '" + property + "' has property value '" + obj1[property] + "'.</p>";
-			}
-		return readableString;
+	var red = 0, blue = 0;
+	for (i = 0; i < data.length; i += 4){
+		red += data[i];
 	}
-    document.getElementById("messageField").innerHTML = objectToHtml(data);
-    messageFinished();
+	for (i = 2; i < data.length; i += 4){
+		blue += data[i];
+	}
+	if (red > blue ){
+		return true
+	} else {
+		return false
+	}
 }
 
 
 function decodeCameraImage(data)
 {
 	
-	redOrBlue(data);
-	return false;
+	return redOrBlue(data);
 }
