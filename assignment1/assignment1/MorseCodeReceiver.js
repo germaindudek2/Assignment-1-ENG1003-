@@ -41,7 +41,7 @@ function redOrBlue(data){
 
 function decodeCameraImage(data)
 {
-    
-    redOrBlue(data);
-    return false;
+	
+	redOrBlue(data);
+	return false;
 }
