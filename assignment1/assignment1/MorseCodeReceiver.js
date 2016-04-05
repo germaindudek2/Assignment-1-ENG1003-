@@ -40,43 +40,33 @@ function redOrBlue(data){
 	}
 }
 
-function translate (timeUnits)
-{
+function translate (timeUnits) {
     if (prevColour === true) {
-            if (timeUnits >= 1 || timeUnits <= 2)
-                {
-                    morseCode += dot;
-                }
-            else 
-                {
-                    morseCode += dash;
-                }
+        if (timeUnits <= 2){
+                morseCode += dot;
+        } else  {
+                morseCode += dash;
         }
-    else {
-        if (timeUnits >= 1 || timeUnits <= 2)
-            {
-                morseCode += elementSpace;
-            }
-        else if (timeUnits >= 3 || timeUnits <= 6) 
-            {
-                morseCode += letterSpace;
-                console.log(morseCode);
-                //Run a funtion that takes the variable 'morseCode' and translates it to the corresponding 
-                //character by looking it up in the global object.
-            }
-        else 
-            {
-            	morseCode += elementSpace;
-                console.log(morseCode);
-                //Update the variable 'decodedMessage' with a ' ' space, and at the end of the
-                //decodeCameraImage funtion update the messagebox on the website to that variable.
-            }
+    } else {
+		if (timeUnits <= 2) {
+			morseCode += elementSpace;
+		} else if (timeUnits <= 6) {
+			morseCode += letterSpace;
+			console.log(morseCode);
+			//Run a funtion that takes the variable 'morseCode' and translates it to the corresponding 
+			//character by looking it up in the global object.
+		} else {
+			morseCode += elementSpace;
+			console.log(morseCode);
+			//Update the variable 'decodedMessage' with a ' ' space, and at the end of the
+			//decodeCameraImage funtion update the messagebox on the website to that variable.
+		}
     }
     timeUnitsTrue = 0;
     timeUnitsFalse = 0;
 }
 
-function updateTimeUnits {
+function updateTimeUnits() {
 	prevColour = color
     if (prevColour === true) {
             timeUnitsTrue += 1
@@ -96,6 +86,7 @@ var elementSpace = "";
 var letterSpace = ", ";
 var wordSpace = "-";
 var decodedMessage = "";
+var color = false;
 
 
 /*
@@ -110,7 +101,7 @@ var decodedMessage = "";
  */
 function decodeCameraImage(data)
 {
-	var color = redOrBlue(data);
+	color = redOrBlue(data);
     if (color !== prevColour) {
             if (prevColour === true) {
                     translate (timeUnitsTrue);
