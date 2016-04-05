@@ -119,4 +119,5 @@ function decodeCameraImage(data)
             } 
     }
     updateTimeUnits();
+    return color;
 }
