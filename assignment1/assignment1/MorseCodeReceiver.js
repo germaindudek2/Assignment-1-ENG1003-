@@ -55,11 +55,13 @@ function translate (timeUnits) {
 			console.log(morseCode);
 			//Run a funtion that takes the variable 'morseCode' and translates it to the corresponding 
 			//character by looking it up in the global object.
+			morseCode = '';
 		} else {
-			morseCode += elementSpace;
+			morseCode += wordSpace;
 			console.log(morseCode);
 			//Update the variable 'decodedMessage' with a ' ' space, and at the end of the
 			//decodeCameraImage funtion update the messagebox on the website to that variable.
+			morseCode = '';
 		}
     }
     timeUnitsTrue = 0;
@@ -83,8 +85,8 @@ var prevColour = true;
 var dot = "1";
 var dash = "0";
 var elementSpace = "";
-var letterSpace = ", ";
-var wordSpace = "-";
+var letterSpace = "";
+var wordSpace = "";
 var decodedMessage = "";
 var color = false;
 
