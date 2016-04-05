@@ -51,8 +51,6 @@ function translate (timeUnits)
                 {
                     morseCode += dash;
                 }
-            timeUnitsTrue = 0;
-            timeUnitsFalse = 0;
         }
     else {
         if (timeUnits >= 1 || timeUnits <= 2)
@@ -73,9 +71,9 @@ function translate (timeUnits)
                 //Update the variable 'decodedMessage' with a ' ' space, and at the end of the
                 //decodeCameraImage funtion update the messagebox on the website to that variable.
             }
-            timeUnitsTrue = 0;
-            timeUnitsFalse = 0;
     }
+    timeUnitsTrue = 0;
+    timeUnitsFalse = 0;
 }
 
 function updateTimeUnits {
@@ -120,6 +118,5 @@ function decodeCameraImage(data)
                     translate (timeUnitsFalse);
             } 
     }
-    
     updateTimeUnits();
 }
