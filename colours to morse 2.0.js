@@ -40,16 +40,64 @@ function redOrBlue(data){
 	}
 }
 
-var characters = ""
-var morseCode = ""
-var timeUnitsTrue = 0
-var timeUnitsFalse = 0
-var prevColour = true
-var dot = "1"
-var dash = "0"
-var elementSpace = ""
-var letterSpace = ", "
-var wordSpace = "-"
+function translate (timeUnits)
+{
+    if (prevColour === true) {
+            if (timeUnits >= 1 || timeUnits <= 2)
+                {
+                    morseCode += dot;
+                }
+            else 
+                {
+                    morseCode += dash;
+                }
+            timeUnitsTrue = 0;
+            timeUnitsFalse = 0;
+        }
+    else {
+        if (timeUnits >= 1 || timeUnits <= 2)
+            {
+                morseCode += elementSpace;
+            }
+        else if (timeUnits >= 3 || timeUnits <= 6) 
+            {
+                morseCode += letterSpace;
+                console.log(morseCode);
+                //Run a funtion that takes the variable 'morseCode' and translates it to the corresponding 
+                //character by looking it up in the global object.
+            }
+        else 
+            {
+            	morseCode += elementSpace;
+                console.log(morseCode);
+                //Update the variable 'decodedMessage' with a ' ' space, and at the end of the
+                //decodeCameraImage funtion update the messagebox on the website to that variable.
+            }
+            timeUnitsTrue = 0;
+            timeUnitsFalse = 0;
+    }
+}
+
+function updateTimeUnits {
+	prevColour = color
+    if (prevColour === true) {
+            timeUnitsTrue += 1
+    } else {
+            timeUnitsFalse += 1
+    }
+}
+
+var characters = "";
+var morseCode = "";
+var timeUnitsTrue = 0;
+var timeUnitsFalse = 0;
+var prevColour = true;
+var dot = "1";
+var dash = "0";
+var elementSpace = "";
+var letterSpace = ", ";
+var wordSpace = "-";
+var decodedMessage = "";
 
 
 /*
@@ -64,81 +112,14 @@ var wordSpace = "-"
  */
 function decodeCameraImage(data)
 {
-    redOrBlue (data)
-    if (redOrBlue(data) !== prevColour)
-        {
-            if (prevColour === true)
-                {
-                    translate (timeUnitsTrue)
-                }
-            else
-                {
-                    translate (timeUnitsFalse)
-                } 
-        }
-    else 
-        {
-            null
-        }
+	var color = redOrBlue(data);
+    if (color !== prevColour) {
+            if (prevColour === true) {
+                    translate (timeUnitsTrue);
+            } else {
+                    translate (timeUnitsFalse);
+            } 
+    }
     
-    
-    prevColour = redOrBlue(data)
-    if (prevColour === true)
-        {
-            timeUnitsTrue += 1
-        }
-    else
-        {
-            timeUnitsFalse += 1
-            
-        }
-    
-    
+    updateTimeUnits();
 }
-
-function translate (a)
-{
-    if (prevColour === true)
-        {
-            if (a >= 1 || a <= 2)
-                {
-                    morseCode += dot
-                    
-                    timeUnitsTrue = 0
-                    timeUnitsFalse = 0
-                }
-            else 
-                {
-                    morseCode += dash
-                    
-                    timeUnitsTrue = 0
-                    timeUnitsFalse = 0
-                }
-        }
-    else
-        {
-            if (a >= 1 || a <= 2)
-                {
-                    morseCode += elementSpace
-                    
-                    timeUnitsTrue = 0
-                    timeUnitsFalse = 0
-                }
-            else if (a >= 3 || a <= 6) 
-                {
-                    morseCode += letterSpace
-                    
-                    timeUnitsTrue = 0
-                    timeUnitsFalse = 0
-                }
-            else 
-                {
-                    morseCode += wordSpace
-                    
-                    timeUnitsTrue = 0
-                    timeUnitsFalse = 0
-                }
-        }
-}
-
-
