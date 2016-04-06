@@ -76,7 +76,7 @@ function updateMessage(morse) {
 		decodedMessage += character;
 		document.getElementById("messageField").innerHTML = decodedMessage;
 	} else {
-		console.log('Error: Unrecognised character after "' + decodedMessage '" segment.')
+		console.log('Error: Unrecognised character after "' + decodedMessage '" + segment.')
 	}
 }
 
