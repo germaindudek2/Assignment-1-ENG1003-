@@ -96,18 +96,18 @@ function updateTimeUnits() {
 }
 
 function onlick() {
-	var characters = "";
-	var morseCode = "";
-	var timeUnitsTrue = 0;
-	var timeUnitsFalse = 0;
-	var prevColour = false;
-	var dot = "1";
-	var dash = "0";
-	var elementSpace = "";
-	var letterSpace = "";
-	var wordSpace = "";
-	var decodedMessage = "";
-	var color = false;
+	characters = "";
+	morseCode = "";
+	timeUnitsTrue = 0;
+	timeUnitsFalse = 0;
+	prevColour = false;
+	dot = "1";
+	dash = "0";
+	elementSpace = "";
+	letterSpace = "";
+	wordSpace = "";
+	decodedMessage = "";
+	color = false;
 	document.getElementById("messageField").innerHTML = decodedMessage;
 }
 
