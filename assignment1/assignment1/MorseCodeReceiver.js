@@ -95,7 +95,7 @@ function updateTimeUnits() {
     }
 }
 
-function onlick() {
+function onclick() {
 	characters = "";
 	morseCode = "";
 	timeUnitsTrue = 0;
