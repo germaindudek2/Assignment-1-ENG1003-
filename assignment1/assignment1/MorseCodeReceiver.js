@@ -111,6 +111,8 @@ function onlick() {
 	document.getElementById("messageField").innerHTML = decodedMessage;
 }
 
+document.getElementById("restartButton").onclick = onclick();
+
 var characters = "";
 var morseCode = "";
 var timeUnitsTrue = 0;
