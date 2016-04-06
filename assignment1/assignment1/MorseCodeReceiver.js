@@ -86,6 +86,22 @@ function updateTimeUnits() {
     }
 }
 
+function onlick() {
+	var characters = "";
+	var morseCode = "";
+	var timeUnitsTrue = 0;
+	var timeUnitsFalse = 0;
+	var prevColour = false;
+	var dot = "1";
+	var dash = "0";
+	var elementSpace = "";
+	var letterSpace = "";
+	var wordSpace = "";
+	var decodedMessage = "";
+	var color = false;
+	document.getElementById("messageField").innerHTML = decodedMessage;
+}
+
 var characters = "";
 var morseCode = "";
 var timeUnitsTrue = 0;
