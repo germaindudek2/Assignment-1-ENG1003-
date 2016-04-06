@@ -111,7 +111,7 @@ function onclick() {
 	document.getElementById("messageField").innerHTML = decodedMessage;
 }
 
-document.getElementById("restartButton").onclick = onclick();
+document.getElementById("restartButton").onclick = onclick;
 
 var characters = "";
 var morseCode = "";
