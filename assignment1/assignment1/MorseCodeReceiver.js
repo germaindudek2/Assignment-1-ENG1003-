@@ -71,6 +71,10 @@ function translate (timeUnits) {
 }
 
 function updateMessage(morse) {
+	if (morse === '111010'){
+		messageFinished();
+		break;
+	}
 	if (morse != '') {
 		var character = lookup[morse];
 		if (character !== undefined) {
@@ -159,7 +163,6 @@ var lookup =
 	'00011':'8',
 	'00001':'9',
 	'1010':'/n',
-	'111010': messageFinished(),
 }
 
 
