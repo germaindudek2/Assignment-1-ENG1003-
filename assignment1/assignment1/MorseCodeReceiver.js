@@ -61,11 +61,19 @@ function translate (timeUnits) {
 			console.log(morseCode);
 			//Update the variable 'decodedMessage' with a ' ' space, and at the end of the
 			//decodeCameraImage funtion update the messagebox on the website to that variable.
+			decodedMessage += " ";
+			document.getElementById("messageField").innerHTML = decodedMessage;
 			morseCode = '';
 		}
     }
     timeUnitsTrue = 0;
     timeUnitsFalse = 0;
+}
+
+function updateMessage(morse) {
+	var character = lookup[morse];
+	decodedMessage += character;
+	document.getElementById("messageField").innerHTML = decodedMessage;
 }
 
 function updateTimeUnits() {
@@ -89,6 +97,48 @@ var letterSpace = "";
 var wordSpace = "";
 var decodedMessage = "";
 var color = false;
+
+var lookup = 
+{
+	10:'a',
+	0111:'b',
+	0101:'c',
+	011:'d',
+	1:'e',
+	1101:'f',
+	001:'g',
+	1111:'h',
+	11:'i',
+	1000:'j',
+	010:'k',
+	1011:'l',
+	00:'m',
+	01:'n',
+	000:'o',
+	1001:'p',
+	0010:'q',
+	101:'r',
+	111:'s',
+	0:'t',
+	110:'u',
+	1110:'v',
+	100:'w',
+	0110:'x',
+	0100:'y',
+	0011:'z',
+	0000:'0',
+	10000:'1',
+	11000:'2',
+	11100:'3',
+	11110:'4',
+	11111:'5',
+	01111:'6',
+	00111:'7',
+	00011:'8',
+	00001:'9',
+	1010:'/n',
+	111010: messageFinished(),
+}
 
 
 /*
