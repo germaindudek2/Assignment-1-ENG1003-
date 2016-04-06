@@ -56,7 +56,6 @@ function translate (timeUnits) {
 			//character by looking it up in the global object.
 			updateMessage(morseCode);
 			morseCode = '';
-			console.log(decodedMessage);
 		} else {
 			morseCode += wordSpace;
 			updateMessage(morseCode);
@@ -65,7 +64,6 @@ function translate (timeUnits) {
 			decodedMessage += " ";
 			document.getElementById("messageField").innerHTML = decodedMessage;
 			morseCode = '';
-			console.log(decodedMessage);
 		}
     }
     timeUnitsTrue = 0;
@@ -74,8 +72,12 @@ function translate (timeUnits) {
 
 function updateMessage(morse) {
 	var character = lookup[morse];
-	decodedMessage += character;
-	document.getElementById("messageField").innerHTML = decodedMessage;
+	if (character !== undefined) {
+		decodedMessage += character;
+		document.getElementById("messageField").innerHTML = decodedMessage;
+	} else {
+		console.log('Error: Unrecognised character after "' + decodedMessage '" segment.')
+	}
 }
 
 function updateTimeUnits() {
