@@ -54,6 +54,7 @@ function translate (timeUnits) {
 			morseCode += letterSpace;
 			//Run a funtion that takes the variable 'morseCode' and translates it to the corresponding 
 			//character by looking it up in the global object.
+			updateMessage(morseCode);
 			morseCode = '';
 			console.log(decodedMessage);
 		} else {
