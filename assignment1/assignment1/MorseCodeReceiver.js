@@ -71,12 +71,14 @@ function translate (timeUnits) {
 }
 
 function updateMessage(morse) {
-	var character = lookup[morse];
-	if (character !== undefined) {
-		decodedMessage += character;
-		document.getElementById("messageField").innerHTML = decodedMessage;
-	} else {
-		console.log('Error: Unrecognised character after "' + decodedMessage + '" segment.')
+	if (morse != '') {
+		var character = lookup[morse];
+		if (character !== undefined) {
+			decodedMessage += character;
+			document.getElementById("messageField").innerHTML = decodedMessage;
+		} else {
+			console.log('Error: Unrecognised character after "' + decodedMessage + '" segment.')
+		}
 	}
 }
 
