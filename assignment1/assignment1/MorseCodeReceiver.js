@@ -52,18 +52,18 @@ function translate (timeUnits) {
 			morseCode += elementSpace;
 		} else if (timeUnits <= 6) {
 			morseCode += letterSpace;
-			console.log(morseCode);
 			//Run a funtion that takes the variable 'morseCode' and translates it to the corresponding 
 			//character by looking it up in the global object.
 			morseCode = '';
+			console.log(decodedMessage);
 		} else {
 			morseCode += wordSpace;
-			console.log(morseCode);
 			//Update the variable 'decodedMessage' with a ' ' space, and at the end of the
 			//decodeCameraImage funtion update the messagebox on the website to that variable.
 			decodedMessage += " ";
 			document.getElementById("messageField").innerHTML = decodedMessage;
 			morseCode = '';
+			console.log(decodedMessage);
 		}
     }
     timeUnitsTrue = 0;
