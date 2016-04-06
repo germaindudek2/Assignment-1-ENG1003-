@@ -59,6 +59,7 @@ function translate (timeUnits) {
 			console.log(decodedMessage);
 		} else {
 			morseCode += wordSpace;
+			updateMessage(morseCode);
 			//Update the variable 'decodedMessage' with a ' ' space, and at the end of the
 			//decodeCameraImage funtion update the messagebox on the website to that variable.
 			decodedMessage += " ";
