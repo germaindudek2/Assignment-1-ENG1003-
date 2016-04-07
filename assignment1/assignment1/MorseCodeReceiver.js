@@ -25,22 +25,27 @@
 
 
 // ADD YOUR ADDITIONAL FUNCTIONS AND GLOBAL VARIABLES HERE
-function redOrBlue(data){
+function redOrBlue(data)
+{
 	var red = 0, blue = 0;
-	for (i = 0; i < data.length; i += 4){
+	for (i = 0; i < data.length; i += 4)
+	{
 		red += data[i];
 	}
-	for (i = 2; i < data.length; i += 4){
+	for (i = 2; i < data.length; i += 4)
+	{
 		blue += data[i];
 	}
-	if (red > blue ){
+	if (red > blue )
+	{
 		return true
 	} else {
 		return false
 	}
 }
 
-function translate (timeUnits) {
+function translate (timeUnits) 
+{
     if (prevColour === true) {
         if (timeUnits <= 2){
                 morseCode += dot;
