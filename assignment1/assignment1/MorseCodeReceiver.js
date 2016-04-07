@@ -72,14 +72,12 @@ function translate (timeUnits) {
 
 function updateMessage(morse) {
 	if (morse !== '111010'){
-		if (morse != '') {
-			var character = lookup[morse];
-			if (character !== undefined) {
-				decodedMessage += character;
-				document.getElementById("messageField").innerHTML = decodedMessage;
-			} else {
-				console.log('Error: Unrecognised character after "' + decodedMessage + '" segment.')
-			}
+		var character = lookup[morse];
+		if (character !== undefined) {
+			decodedMessage += character;
+			document.getElementById("messageField").innerHTML = decodedMessage;
+		} else {
+			console.log('Error: Unrecognised character after "' + decodedMessage + '" segment.')
 		}
 	} else {
 		messageFinished();
@@ -128,6 +126,7 @@ var color = false;
 
 var lookup = 
 {
+	'':'',
 	'10':'a',
 	'0111':'b',
 	'0101':'c',
