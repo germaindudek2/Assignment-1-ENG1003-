@@ -1,6 +1,10 @@
  /*
  * Morse Code receiver app information:
  *
+ *Purpose: This file is designed to take information from the camera sensor in an android phone pointed at a morse transmitter,
+ *and then decode the information to then display it in the mobile application.	
+ *Authors: Alasdair Price, Isobel Memeo, Simon Kogan, Germain d'Udekem d'Acoz
+ *
  * Function: messageFinished(): stops the capturing process
  *
  *     You can call this function to let the app know that the 
@@ -110,29 +114,42 @@ function redOrBlue(data)
 	if (red > blue )
 	{
 		return true
-	} else {
+	} 
+	else 
+	{
 		return false
 	}
 }
 
 function translate (timeUnits) 
 {
-    if (prevColour === true) {
-        if (timeUnits <= 2){
-                morseCode += dot;
-        } else  {
-                morseCode += dash;
+    if (prevColour === true) 
+    {
+        if (timeUnits <= 2)
+        {
+        	morseCode += dot;
+        } 
+        else  
+        {
+        	morseCode += dash;
         }
-    } else {
-		if (timeUnits <= 2) {
+    } 
+    else 
+    {
+		if (timeUnits <= 2) 
+		{
 			morseCode += elementSpace;
-		} else if (timeUnits <= 6) {
+		} 
+		else if (timeUnits <= 6) 
+		{
 			morseCode += letterSpace;
 			//Run a funtion that takes the variable 'morseCode' and translates it to the corresponding 
 			//character by looking it up in the global object.
 			updateMessage(morseCode);
 			morseCode = '';
-		} else {
+		} 
+		else 
+		{
 			morseCode += wordSpace;
 			updateMessage(morseCode);
 			//Update the variable 'decodedMessage' with a ' ' space, and at the end of the
@@ -146,30 +163,42 @@ function translate (timeUnits)
     timeUnitsFalse = 0;
 }
 
-function updateMessage(morse) {
-	if (morse !== '111010'){
+function updateMessage(morse) 
+{
+	if (morse !== '111010')
+	{
 		var character = lookup[morse];
-		if (character !== undefined) {
+		if (character !== undefined) 
+		{
 			decodedMessage += character;
 			document.getElementById("messageField").innerHTML = decodedMessage;
-		} else {
+		} 
+		else 
+		{
 			console.log('Error: Unrecognised character after "' + decodedMessage + '" segment.')
 		}
-	} else {
+	} 
+	else 
+	{
 		messageFinished();
 	}
 }
 
-function updateTimeUnits() {
+function updateTimeUnits() 
+{
 	prevColour = color
-    if (prevColour === true) {
-            timeUnitsTrue += 1
-    } else {
-            timeUnitsFalse += 1
+    if (prevColour === true) 
+    {
+    	timeUnitsTrue += 1
+    } 
+    else 
+    {
+    	timeUnitsFalse += 1
     }
 }
 
-function onclick() {
+function onclick() 
+{
 	characters = "";
 	morseCode = "";
 	timeUnitsTrue = 0;
@@ -199,12 +228,16 @@ function onclick() {
 function decodeCameraImage(data)
 {
 	color = redOrBlue(data);
-    if (color !== prevColour) {
-            if (prevColour === true) {
-                    translate (timeUnitsTrue);
-            } else {
-                    translate (timeUnitsFalse);
-            } 
+    if (color !== prevColour) 
+    {
+    	if (prevColour === true) 
+    	{
+    		translate (timeUnitsTrue);
+        } 
+        else 
+        {
+        	translate (timeUnitsFalse);
+        } 
     }
     updateTimeUnits();
     return color;
