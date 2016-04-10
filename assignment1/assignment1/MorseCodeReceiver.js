@@ -36,9 +36,6 @@ var prevColour = false;
 var color = false;
 var dot = "1";
 var dash = "0";
-var elementSpace = "";
-var letterSpace = "";
-var wordSpace = " ";
 var decodedMessage = "";
 
 document.getElementById("restartButton").onclick = onclick;
@@ -136,24 +133,14 @@ function translate (timeUnits)
     } 
     else 
     {
-		if (timeUnits <= 2) 
+		if (timeUnits <= 6 && timeUnits > 2) 
 		{
-			morseCode += elementSpace;
-		} 
-		else if (timeUnits <= 6) 
-		{
-			morseCode += letterSpace;
-			//Run a funtion that takes the variable 'morseCode' and translates it to the corresponding 
-			//character by looking it up in the global object.
 			updateMessage(morseCode);
 			morseCode = '';
 		} 
-		else 
+		else if (timeUnits > 6)
 		{
-			morseCode += wordSpace;
 			updateMessage(morseCode);
-			//Update the variable 'decodedMessage' with a ' ' space, and at the end of the
-			//decodeCameraImage funtion update the messagebox on the website to that variable.
 			decodedMessage += " ";
 			document.getElementById("messageField").innerHTML = decodedMessage;
 			morseCode = '';
