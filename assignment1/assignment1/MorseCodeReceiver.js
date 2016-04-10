@@ -35,12 +35,13 @@ var timeUnitsTrue = 0;
 var timeUnitsFalse = 0;
 var prevColour = false;
 var colour = false;
-var dot = "1";
-var dash = "0";
+var DOT = "1";
+var DASH = "0";
 var decodedMessage = "";
 
 var lookupTable = 
 {
+	'': '',
 	"10": "a",
 	"0111": "b",
 	"0101": "c",
@@ -113,6 +114,9 @@ returns:
 function redOrBlue(data)
 {
 	var red = 0, blue = 0;
+	//These 'for' loops iterate through the array, adding the values of red in each pixel to the variable 'red' and 
+	//the values of blue in each pixel to the variable 'blue'. By then comparing the two variables we can determine
+	//whether the image is mostly red or mostly blue.
 	for (i = 0; i < data.length; i += 4)
 	{
 		red += data[i];
@@ -148,16 +152,12 @@ returns:
 
 function onclick() 
 {
-	characters = "";
 	morseCode = "";
 	timeUnitsTrue = 0;
 	timeUnitsFalse = 0;
 	prevColour = false;
-	dot = "1";
-	dash = "0";
-	elementSpace = "";
-	letterSpace = "";
-	wordSpace = "";
+	DOT = "1";
+	DASH = "0";
 	decodedMessage = "";
 	colour = false;
 	document.getElementById("messageField").innerHTML = decodedMessage;
@@ -206,11 +206,17 @@ returns:
 
 function updateMessage(morse) 
 {
-	if (morse !== '111010')
+	var END_OF_TRANSMISSION = '111010';
+	if (morse !== END_OF_TRANSMISSION)
 	{
 		var character = lookupTable[morse];
+		//We set up the following 'if' statement so that if the morse sequence is not in the lookup table (which can
+		//happen if the user moves the camera accidentally), 'undefined' is not printed to the message field. Instead, an
+		//error is printed to the console, also indicating after which segment of text the error occured.
 		if (character !== undefined) 
 		{
+			//The decodedMessage variable denotes what has currently been transmitted of the message. At this point in
+			//the code, it gets updated with the new character.
 			decodedMessage += character;
 			document.getElementById("messageField").innerHTML = decodedMessage;
 		} 
@@ -246,11 +252,11 @@ function translateToMorse(timeUnits)
     {
         if (timeUnits <= 2)
         {
-        	morseCode += dot;
+        	morseCode += DOT;
         } 
         else  
         {
-        	morseCode += dash;
+        	morseCode += DASH;
         }
     } 
     else 
@@ -263,13 +269,13 @@ function translateToMorse(timeUnits)
 		else if (timeUnits > 6)
 		{
 			updateMessage(morseCode);
+			//If the colour blue stays on for seven or more time units, then it denotes a space in between two words. This
+			//is why a space is added to the variable 'decodedMessage' in the line below.
 			decodedMessage += " ";
 			document.getElementById("messageField").innerHTML = decodedMessage;
 			morseCode = '';
 		}
     }
-    timeUnitsTrue = 0;
-    timeUnitsFalse = 0;
 }
 
 /*
@@ -294,7 +300,11 @@ function decodeCameraImage(data)
         else 
         {
         	translateToMorse(timeUnitsFalse);
-        } 
+        }
+        //Since the colour has just changed, we re-initialise the following two variables to 0 so that the counting of time
+        //units can begin again.
+	    timeUnitsTrue = 0;
+	    timeUnitsFalse = 0;
     }
     
     prevColour = colour;
