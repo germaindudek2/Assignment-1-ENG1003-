@@ -33,7 +33,7 @@ var morseCode = "";
 var timeUnitsTrue = 0;
 var timeUnitsFalse = 0;
 var prevColour = false;
-var color = false;
+var colour = false;
 var dot = "1";
 var dash = "0";
 var decodedMessage = "";
@@ -49,8 +49,8 @@ var lookup =
 	"1": "e",
 	"1101": "f",
 	"001": "g",
-	"1111": "h"
-	"11": "i"
+	"1111": "h",
+	"11": "i",
 	"1000": "j",
 	"010": "k",
 	"1011": "l",
@@ -118,6 +118,57 @@ function redOrBlue(data)
 	}
 }
 
+function onclick() 
+{
+	characters = "";
+	morseCode = "";
+	timeUnitsTrue = 0;
+	timeUnitsFalse = 0;
+	prevColour = false;
+	dot = "1";
+	dash = "0";
+	elementSpace = "";
+	letterSpace = "";
+	wordSpace = "";
+	decodedMessage = "";
+	colour = false;
+	document.getElementById("messageField").innerHTML = decodedMessage;
+}
+
+function updateTimeUnits() 
+{
+	prevColour = colour
+    if (prevColour === true) 
+    {
+    	timeUnitsTrue += 1
+    } 
+    else 
+    {
+    	timeUnitsFalse += 1
+    }
+}
+
+function updateMessage(morse) 
+{
+	if (morse !== '111010')
+	{
+		var character = lookup[morse];
+		if (character !== undefined) 
+		{
+			decodedMessage += character;
+			document.getElementById("messageField").innerHTML = decodedMessage;
+		} 
+		else 
+		{
+			console.log('Error: Unrecognised character after "' + decodedMessage + '" segment.')
+		}
+	} 
+	else 
+	{
+		messageFinished();
+	}
+}
+
 function translate (timeUnits) 
 {
     if (prevColour === true) 
@@ -150,58 +201,6 @@ function translate (timeUnits)
     timeUnitsFalse = 0;
 }
 
-function updateMessage(morse) 
-{
-	if (morse !== '111010')
-	{
-		var character = lookup[morse];
-		if (character !== undefined) 
-		{
-			decodedMessage += character;
-			document.getElementById("messageField").innerHTML = decodedMessage;
-		} 
-		else 
-		{
-			console.log('Error: Unrecognised character after "' + decodedMessage + '" segment.')
-		}
-	} 
-	else 
-	{
-		messageFinished();
-	}
-}
-
-function updateTimeUnits() 
-{
-	prevColour = color
-    if (prevColour === true) 
-    {
-    	timeUnitsTrue += 1
-    } 
-    else 
-    {
-    	timeUnitsFalse += 1
-    }
-}
-
-function onclick() 
-{
-	characters = "";
-	morseCode = "";
-	timeUnitsTrue = 0;
-	timeUnitsFalse = 0;
-	prevColour = false;
-	dot = "1";
-	dash = "0";
-	elementSpace = "";
-	letterSpace = "";
-	wordSpace = "";
-	decodedMessage = "";
-	color = false;
-	document.getElementById("messageField").innerHTML = decodedMessage;
-}
-
-
 /*
  * This function is called once per unit of time with camera image data.
  * 
@@ -214,18 +213,18 @@ function onclick()
  */
 function decodeCameraImage(data)
 {
-	color = redOrBlue(data);
-    if (color !== prevColour) 
+	colour = redOrBlue(data);
+	if (colour !== prevColour) 
     {
     	if (prevColour === true) 
     	{
     		translate (timeUnitsTrue);
-        } 
+    	} 
         else 
         {
         	translate (timeUnitsFalse);
         } 
     }
     updateTimeUnits();
-    return color;
+    return colour;
 }
