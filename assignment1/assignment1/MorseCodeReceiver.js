@@ -1,9 +1,10 @@
  /*
  * Morse Code receiver app information:
  *
- *Purpose: This file is designed to take information from the camera sensor in an android phone pointed at a morse transmitter,
- *and then decode the information to then display it in the mobile application.	
- *Authors: Alasdair Price, Isobel Memeo, Simon Kogan, Germain d'Udekem d'Acoz
+ * Purpose: This file is designed to take information from the camera sensor in an android phone pointed at a morse transmitter,
+ * and then decode the information to then display it in the mobile application.	
+ * Authors: Alasdair Price, Isobel Memeo, Simon Kogan, Germain d'Udekem d'Acoz
+ * Last Modified: 8 April 2016
  *
  * Function: messageFinished(): stops the capturing process
  *
@@ -38,9 +39,7 @@ var dot = "1";
 var dash = "0";
 var decodedMessage = "";
 
-document.getElementById("restartButton").onclick = onclick;
-
-var lookup = 
+var lookupTable = 
 {
 	"10": "a",
 	"0111": "b",
@@ -97,6 +96,20 @@ var lookup =
 	"1010" : "\n"
 };
 
+/*
+redOrBlue()
+
+This function takes an image and determines whether it is mostly red or mostly blue.
+
+arguments: 
+	data: This represents the image in an array format, where the each pixel is represented by four elements
+          representing the intesity of red, blue, green and alpha (transparency) in the image.
+                
+returns:
+	true if the image is mostly red
+	false if the image is mostly blue
+*/
+
 function redOrBlue(data)
 {
 	var red = 0, blue = 0;
@@ -118,6 +131,21 @@ function redOrBlue(data)
 	}
 }
 
+document.getElementById("restartButton").onclick = onclick;
+
+/*
+onclick()
+
+This function is called when the button with the id 'restartButton' is clicked. It makes the app ready to record a new
+message by clearing the message field and resetting all the global vairables to their original values.
+
+arguments:
+	This funtion has no arguments.
+	
+returns:
+	This function does not return anything.
+*/
+
 function onclick() 
 {
 	characters = "";
@@ -135,9 +163,23 @@ function onclick()
 	document.getElementById("messageField").innerHTML = decodedMessage;
 }
 
+/*
+updateTimeUnits()
+
+This function is called at the end of every iteration of the decodeCameraImage() function. It is used to keep a tally on
+the number of time units that a colour has been displaying for. It does this by updating by 1 the global variable 
+'timeUnitsTrue' if the color is red and 'timeUnitsFalse' if the color is blue. This is then useful to figure out what 
+the morse sequence is.
+
+arguments:
+	This functin has no arguments.
+	
+returns:
+	This function does not return anything.
+*/
+
 function updateTimeUnits() 
 {
-	prevColour = colour
     if (prevColour === true) 
     {
     	timeUnitsTrue += 1
@@ -148,11 +190,25 @@ function updateTimeUnits()
     }
 }
 
+/*
+updateMessage()
+
+This function translates a morse sequence into an alphanumerical character by looking it up in the 'lookupTable' object,
+and then updates the decoded message with that character. It then refreshes the message field with the full decoded 
+message.
+
+arguments:
+	morse: represents a morse sequence where a '1' represents a dot and a '0' represents a dash.
+	
+returns:
+	This function does not return anything.
+*/
+
 function updateMessage(morse) 
 {
 	if (morse !== '111010')
 	{
-		var character = lookup[morse];
+		var character = lookupTable[morse];
 		if (character !== undefined) 
 		{
 			decodedMessage += character;
@@ -169,7 +225,22 @@ function updateMessage(morse)
 	}
 }
 
-function translate (timeUnits) 
+/*
+translateToMorse()
+
+This function is called whenever the colour changes. It looks at what the previous colour was and how many time units
+it was displayed for, and it determines what that colour represented. If it was red, it will determine if it was a dot 
+or a dash and update the morse sequence accordingly. If it was blue, it will figure out if it was a space between two
+elements or two words. If it was, it will call the updateMessage() function.
+
+arguments:
+	timeUnits: an integer representing how long the previous colour was shown for in time units.
+	
+returns:
+	This function does not return anything.
+*/
+
+function translateToMorse(timeUnits) 
 {
     if (prevColour === true) 
     {
@@ -218,13 +289,15 @@ function decodeCameraImage(data)
     {
     	if (prevColour === true) 
     	{
-    		translate (timeUnitsTrue);
+    		translateToMorse(timeUnitsTrue);
     	} 
         else 
         {
-        	translate (timeUnitsFalse);
+        	translateToMorse(timeUnitsFalse);
         } 
     }
+    
+    prevColour = colour;
     updateTimeUnits();
     return colour;
 }
